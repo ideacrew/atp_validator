@@ -1,0 +1,29 @@
+<project name="MyProject" default="schematron-compile-test" basedir=".">
+<target name="schematron-compile-test" >
+	<!-- expand inclusions -->
+	<xslt basedir="."
+	style="transforms/iso_dsdl_include.xsl" in="AccountTransfer-runtime.sch"  out="test1.sch"> 
+	<classpath>
+		<pathelement location="lib/saxon9he.jar"/>
+	</classpath>
+</xslt>
+
+<!-- expand abstract patterns -->
+<xslt basedir="."
+style="transforms/iso_abstract_expand.xsl" in="test1.sch"  out="test2.sch"> 
+<classpath>
+	<pathelement location="lib/saxon9he.jar"/>
+</classpath>
+	   </xslt>
+
+
+
+	   <!-- compile it -->
+	   <xslt basedir="."
+	   style="transforms/iso_svrl_for_xslt2.xsl" in="test2.sch"  out="../src/main/resources/org/openhbx/atp_validator/AccountTransfer-runtime.xsl"> 
+	   <classpath>
+		   <pathelement location="lib/saxon9he.jar"/>
+	   </classpath>
+   </xslt>
+</target>
+</project>
