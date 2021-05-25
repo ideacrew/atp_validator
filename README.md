@@ -31,4 +31,8 @@ Invoking a port works like this:
 
 Prior to choosing to undertake this task in java, we considered multiple ruby libraries and frameworks.
 
+The primary drivers are:
+1. The schematron file (schematron/AccountTransfer-runtime.sch) is encoded in a XSLT 2.0 specific syntax, and requires support of that standard to work.
+2. Limited support of XSLT 2.0
+
 **Fill in this section with considered libraries and results from attempting to use them**.
