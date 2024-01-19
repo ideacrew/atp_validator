@@ -3,6 +3,7 @@ package org.openhbx.atp_validator;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 /**
  *
@@ -31,6 +32,7 @@ public class InReader {
       sizeArray[i] = read.byteValue();
     }
     ByteBuffer b = ByteBuffer.allocate(4);
+    b.order(ByteOrder.BIG_ENDIAN);
     b.put(sizeArray);
     b.rewind();
     return b.getInt();
