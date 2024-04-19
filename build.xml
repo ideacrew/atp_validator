@@ -1,0 +1,33 @@
+<project name="AtpValidator" default="dist" basedir=".">
+	<target name="clean">
+		<delete dir="build"/>
+		<delete dir="dist"/>
+		<delete>
+			<fileset dir="./lib" includes="**/*.class"/>
+		</delete>
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="build"/>
+		<copy todir="build">
+			<fileset dir="lib" includes="**/*.rb"/>
+		</copy>
+		<copy todir="build/resources">
+		   <fileset dir="resources" includes="**/*.xsl"/>
+		</copy>
+		<copy todir="build">
+		   <fileset dir="resources" includes="jar-bootstrap.rb"/>
+		</copy>
+	</target>
+
+	<target name="dist" depends="compile">
+		<jar destfile="dist/atp_validator-0.3.0-jar-with-dependencies.jar">
+			<fileset dir="build"/>
+			<zipfileset excludes="META-INF/**/*" src="jars/Saxon-HE-9.9.1-8.jar" />
+			<zipfileset excludes="META-INF/MANIFEST.MF" src="jars/jruby-complete-9.4.6.0.jar" />
+			<manifest>
+				<attribute name="Main-Class" value="org.jruby.JarBootstrapMain"/>
+			</manifest>
+		</jar>
+	</target>
+</project>

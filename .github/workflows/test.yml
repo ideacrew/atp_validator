@@ -6,10 +6,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
+      - uses: ruby/setup-ruby@v1
         with:
-          java-version: 1.8
-      - name: Build with Maven
+          ruby-version: jruby-9.4.6.0
+          bundler-cache: true
+      - name: Test with JRuby
         run: |
-          mvn --batch-mode test
+          jruby -S bundle install
+          jruby -S bundle exec rspec
+          
