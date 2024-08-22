@@ -4,16 +4,16 @@ Executes XML business rules to validate ATP payloads for OpenHBX.
 
 ## Building
 
-This project builds as a shaded jar, so build with:
+This project is built for deployment into a stand-alone jar.  This compiles all the JRuby resources into a single jar that can be run by itself.
 ```
-mvn clean compile assembly:single
+ant dist
 ```
 
 ## Running
 
 This application runs in two modes:
 1. packet port mode: the application stays alive indefinitely receiving and sending messages using the port protocol, with packet size of 4.  This is the default.
-2. oneshot mode: the application reads the XML file from standard in and prints the results on standard out, then exits.  Run with `--oneshot` to activate this mode.  Example: `cat example.xml | java -jar atp_validator-0.1.0-jar-with-dependencies.jar --oneshot`
+2. oneshot mode: the application reads the XML file from standard in and prints the results on standard out, then exits.  Run with `--oneshot` to activate this mode.  Example: `cat example.xml | java -jar atp_validator-0.2.0-jar-with-dependencies.jar --oneshot`
 
 ## Port Protocol
 
@@ -34,5 +34,3 @@ Prior to choosing to undertake this task in java, we considered multiple ruby li
 The primary drivers are:
 1. The schematron file (schematron/AccountTransfer-runtime.sch) is encoded in a XSLT 2.0 specific syntax, and requires support of that standard to work.
 2. Limited support of XSLT 2.0
-
-**Fill in this section with considered libraries and results from attempting to use them**.
